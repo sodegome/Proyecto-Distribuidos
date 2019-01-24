@@ -34,6 +34,7 @@ $transport->open();
 
 <html>
 	<head>
+		<meta charset="UTF-8">
 		<title>Tickets</title>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	</head>
@@ -48,10 +49,10 @@ $transport->open();
 
 				<nav class="menu">
 					<ul>
-						<li><a href="index.html">Inicio</a></li>
-						<li><a href="ventas.html">Ventas</a></li>
-						<li><a href="registro.html">Registrase</a></li>
-						<li><a href="login.html">Acceder</a></li>
+						<li><a href="index.php">Inicio</a></li>
+						<li><a href="ventas.php" name="ventas">Ventas</a></li>
+						<li><a href="registro.html" id="registro">Registrase</a></li>
+						<li><a href="login.html" id="acceso">Acceder</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -88,5 +89,22 @@ $transport->open();
 			</footer>
 		</div>
 	</body>
+	<?php
+		if(isset($_POST['ventas'])){
+			 $re = $client->obtenerLista();
+			 $resultado = "".$re;
+		 }
+		 $ra="";
+		if(isset($_POST["registro"])){
+				 $ra = $client->CreateUser();
+				 $resultado = "";
+		 }
+		 if(isset($_POST["acceso"])){
+				 $ra = $client->authentication();
+				 $resultado = "";
+		 } 
+		else {
+		}
+   ?>
 	<script src="js/principal.js"></script>
 </html>
